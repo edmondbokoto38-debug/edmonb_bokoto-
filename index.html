@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Edmond Bokoto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Material Design Color Palette */
+        :root {
+            --primary-color: #1976d2;
+            --primary-dark: #1565c0;
+            --primary-light: #42a5f5;
+            --accent-color: #ff4081;
+            --text-primary: rgba(0, 0, 0, 0.87);
+            --text-secondary: rgba(0, 0, 0, 0.54);
+            --background: #fafafa;
+            --surface: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--surface);
+            box-shadow: 0 2px 4px var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-brand {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        #presentation {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+        .hero-image img{
+            border-radius: 50%;
+        }
+
+        /* Content Sections */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        .hero-content h2{
+            display: flex;
+            margin:  -20px 15px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow);
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+
+        .card-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .card-content {
+            line-height: 1.7;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        /* Timeline for Experience */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background-color: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow);
+            padding: 24px;
+            margin-bottom: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            box-shadow: 0 4px 16px var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 24px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid var(--surface);
+        }
+
+        .timeline-date {
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 -2px 4px var(--shadow);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                box-shadow: 0 4px 8px var(--shadow);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 16px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 80px 20px 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+                font-size: 4rem;
+            }
+        }
+        .ims{
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#presentation" class="nav-brand">Portfolio</a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="material-icons">menu</i>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#presentation">Présentation</a></li>
+                <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#education">Éducation</a></li>
+                <li><a href="#vision">Vision</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Présentation Section -->
+    <section id="presentation">
+        <div class="hero-content">
+            <div class="hero-image">
+                <i class="material-icons"><img src="img/Capture.JPG" alt="" class="imgs"></i>
+            </div>
+            <h2>Edmond bokoto</h2>
+            <h1 class="hero-title">Bienvenue sur mon Portfolio</h1>
+            <p class="hero-subtitle">Développeur passionné | Créateur d'expériences numériques</p>
+            <a href="#experiences" class="btn">Découvrir mon parcours</a>
+        </div>
+    </section>
+
+    <!-- Expériences Section -->
+    <section id="experiences">
+        <h2 class="section-title">Expériences Professionnelles</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - Présent</div>
+                <h3 class="card-title">Développeur Full-Stack</h3>
+                <p class="card-subtitle">Club TITAN</p>
+                <p class="card-content">
+                    Développement d'applications web modernes utilisant les dernières technologies.
+                    Collaboration avec des équipes internationales pour livrer des produits de qualité.
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024</div>
+                <h3 class="card-title">Développeur Front-End</h3>
+                <p class="card-subtitle">Club TITAN</p>
+                <p class="card-content">
+                    Création d'interfaces utilisateur intuitives et responsives.
+                    Optimisation des performances et de l'expérience utilisateur.
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024</div>
+                <h3 class="card-title">Stagiaire Développeur</h3>
+                <p class="card-subtitle"></p>
+                <p class="card-content">
+                    Apprentissage des bonnes pratiques de développement.
+                    Participation à des projets variés et challengeants.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Éducation Section -->
+    <section id="education">
+        <h2 class="section-title">Formation & Éducation</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">Diplômé en Série A</h3>
+                <p class="card-subtitle">Lycée AMbroise Edourad Noumazalay- 2019</p>
+                <p class="card-content">
+                    
+                </p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Bac +2 en Informatique</h3>
+                <p class="card-subtitle">Université Pédagogique Nationale - 2025</p>
+                <p class="card-content">
+                    Formation complète en programmation, bases de données et réseaux.
+                    Stage en entreprise de 6 mois.
+                </p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Certifications</h3>
+                <p class="card-subtitle">Compétences Validées</p>
+                <p class="card-content">
+                    CECONTEC Programmation web<br>
+                    Centre de formation saint de dernier jour : programmation avencé<br>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision">
+        <h2 class="section-title">Vision & Objectifs</h2>
+        <div class="card">
+            <h3 class="card-title">Mon Vision pour l'Avenir</h3>
+            <p class="card-content">
+                Passionné par l'innovation technologique, je m'efforce de créer des solutions
+                numériques qui améliorent la vie quotidienne des utilisateurs. Mon objectif est
+                de contribuer à des projets à impact positif tout en continuant à apprendre et
+                à me perfectionner dans mon domaine.
+
+                Je crois fermement que la technologie doit être accessible à tous et je m'engage
+                à développer des applications intuitives, performantes et inclusives.
+            </p>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="mailto:edmondbokoto38@gmail.com" class="btn">Contactez-moi sur Mail</a>
+            <a href="https://wa.me/243982098348" target="_blank" class="btn">Contactez-moi sur WhatsApp</a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Edmond Bokoto. Tous droits réservés.</p>
+        <p>Développé avec ❤️ en HTML, CSS et JavaScript</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Active navigation link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations (optional enhancement)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in animation to cards
+        document.querySelectorAll('.card, .timeline-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
