@@ -276,7 +276,8 @@
 
         .album-item img {
             width: 100%;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s ease;
