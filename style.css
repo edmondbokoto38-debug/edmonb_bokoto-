@@ -252,14 +252,6 @@
             box-shadow: 0 4px 8px var(--shadow);
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--surface);
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 -2px 4px var(--shadow);
-        }
-
         /* Album Section */
         #album {
             width: 100%;
@@ -382,4 +374,12 @@
         }
         .ims{
             border-radius: 50px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 -2px 4px var(--shadow);
         }
