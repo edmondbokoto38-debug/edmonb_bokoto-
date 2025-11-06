@@ -255,11 +255,11 @@
         /* Album Section */
         #album {
             width: 100%;
-            height: 200px;
             padding: 60px 20px;
             background-color: #f9f9f9;
             text-align: center;
         }
+
         
         .album-grid {
             display: grid;
